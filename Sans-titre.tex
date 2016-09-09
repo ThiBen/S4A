@@ -1,0 +1,94 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{stmaryrd}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage[all]{xy}
+\usepackage{setspace}
+\setstretch{1,4}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}
+\newtheorem{ppst}{Proposition}
+\newtheorem{coro}{Corollaire}
+\newtheorem*{lemma}{Lemme}
+\newtheorem*{props}{Propiétés}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Définition}
+\newtheorem*{nota}{Notation}
+\newtheorem{propdef}{Proposition - Définition}
+
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{ex}{Exemple}
+
+
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\sym}{\mathfrak{S}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Conj}{Conj}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Vect}{Vect}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\triv}{triv}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\CF}{\mathcal{CF}}
+\DeclareMathOperator{\Pbase}{\mathbb{P}}
+
+
+\title{Réponse à la Question Hardcore 3 de Science4All}
+%\institute{Laboratoire de Recherche en Informatique (LRI) Bât 650 Ada Lovelace / Bat 660 Claude Shannon, Université Paris Sud
+%Rue Noetzlin, 91190 Gif-sur-Yvette}
+\author{Thibaut BENJAMIN}
+
+\begin{document}
+
+\maketitle
+
+Choississons une suite $u$ qui admet une supersommation $T$, mais qui ne vérifie pas les conditions de la vidéo. Il y a 3 cas :
+
+\begin{itemize} 
+\item La suite $u$ ne vérifie aucune relation de récurrence linéaire. Dans ce cas, $T$ est nécessairement défini sur l'espace $C+\mathbb{R}\left[ e\right](u)$, où $\mathbb{R}\left[ e\right](u)$ désigne l'ensemble des polynômes en $e$ appliqués à $u$. Alors $e$ stabilise les deux espaces $C$ et $\mathbb{R}\left[ e\right](u)$. Définissons $T'$ de la façon suivante :
+\begin{itemize}
+\item si x est dans C, T'(x)=T(x)=S(x)
+\item si x est dans R[e](u), T'(x)=2T(x) 
+\end{itemize}
+Alors $T'$ est encore une supersommation. En fait plus généralement, si $T$ est définie sur $C\oplus B$ et $e$ stabilise $C$ et $B$, alors cette construction marche toujours, et on n'a jamais unicité de la supersommation (on a au moins une droite de supersommations possibles) \\
+
+\item La suite $u$ vérifie une relation de récurrence à un terme convergent près, mais la somme des coefficients de la récurrence est différente de 1. La relation s'écrit alors $e^n(u) = c + P(e)(u)$ où $P$ est un polynôme de degré $n-1$ et dont la somme des coefficients vaut 1, et en passant à $T$, on a $T(u) = S(c) + T(u)$, donc $S(c) = 0$. De plus, la fonction $T$ est définie sur l'espace $C\oplus\mathbb{R}_{n-1}\left[ e \right](u)$, et à nouveau, on peut définir $T'$, en posant : 
+\begin{itemize}
+\item si $x$ est dans $C$, $T'(x)=T(x)=S(x)$
+\item si $x$ est dans $\mathbb{R}_{n-1}\left[ e \right](u)$, $T'(x)=2T(x)$ 
+\end{itemize}
+A nouveau $T'$ est une supersommation régulière, linéaire et stable. Il suffit de vérifier qu'elle est stable, or $T'(e(x)) = T'(c+P(e)(x)) = S(c)+2T(P(e)(x)) = 2T(x) = T'(x$) si $x$ est dans $\mathbb{R}_{n-1}\left[ e \right](u)$\\
+
+ \item Le seul cas qui reste à traiter, est le cas où la suite $u$ vérifie une relation de récurrence à un terme près, mais ce terme ne converge pas. C'est la qu'il me semble il y a une subtilité, car je pense que si ce terme lui même est muni d'une supersommation unique, alors on peut définir une supersommation pour la suite $u$ si on suppose que la somme des coefficients est différente de 1 (sinon, il n'y a pas de solution, c'est analogue au cas 2). On obtiendrait alors une suite de sous espaces de plus en plus gros : 
+ \begin{itemize}
+ \item $C_0 = C$, l'ensemble des suites convergentes
+ \item $C_1 = C_0 + A_0$, où $A_0$ désigne l'ensemble des suites qui vérifient une récurrence linéaire non barycentrique à un terme de $C_0$ près 
+ \item $C_2 = C_1 + A_1$, où $A_1$ désigne l'ensemble des suites qui vérifient une récurrence linéaire non barycentrique à un terme de $C_1$ près, etc... \\
+ \end{itemize}
+\end{itemize} 
+
+Ca ferait des extensions successives un peu à la manière des extensions de corps successives. Voilà j'ai pas réfléchi à ce dernier cas plus que ca, en particulier j'ai pas de description plus explicite. Peut être aussi que c'est mieux de le voir comme un espace vectoriel gradué $\bigoplus A_i$, en posant $A_{-1} = C$
+
+\end{document}
